@@ -80,22 +80,6 @@ quanly_sinhvien/
 ├── index.php          # Trang chính
 └── README.md          # Tài liệu dự án
 ```
-
-## 6. Hướng dẫn cài đặt
-
-1. Cài đặt XAMPP.
-2. Khởi động Apache và MySQL.
-3. Sao chép thư mục dự án vào `htdocs`.
-4. Mở phpMyAdmin.
-5. Tạo database `quanlysinhvien`.
-6. Import file `database/quanlysinhvien.sql`.
-7. Cấu hình thông tin kết nối trong `config/ketnoi.php`.
-8. Truy cập website:
-
-```text
-http://localhost/quanly_sinhvien/
-```
-
 ## 7. Bảo mật
 
 - Sử dụng `password_hash()` để mã hóa mật khẩu trước khi lưu.
