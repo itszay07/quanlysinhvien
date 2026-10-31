@@ -73,7 +73,7 @@ quanly_sinhvien/
 ├── sinhvien/          # Chức năng sinh viên
 ├── auth/              # Đăng nhập, đăng xuất, quên mật khẩu
 ├── config/            # Kết nối cơ sở dữ liệu
-├── database/          # File SQL tạo cơ sở dữ liệu
+├── database.sql         # File SQL tạo cơ sở dữ liệu
 ├── includes/          # Các thành phần dùng chung
 ├── css/               # File CSS
 │
