@@ -80,7 +80,7 @@ quanly_sinhvien/
 ├── index.php          # Trang chính
 └── README.md          # Tài liệu dự án
 ```
-## 7. Bảo mật
+## 6. Bảo mật
 
 - Sử dụng `password_hash()` để mã hóa mật khẩu trước khi lưu.
 - Sử dụng `password_verify()` để kiểm tra mật khẩu.
@@ -89,7 +89,7 @@ quanly_sinhvien/
 - Phân quyền truy cập giữa Admin và Sinh viên.
 - Không công khai thông tin kết nối database trên GitHub.
 
-## 8. Trạng thái dự án
+## 7. Trạng thái dự án
 
 - [x] Thiết kế cơ sở dữ liệu gồm 5 bảng.
 - [x] Kết nối PHP với MySQL.
@@ -108,24 +108,25 @@ quanly_sinhvien/
 - [ ] Hoàn thiện xác thực email thực tế cho chức năng quên mật khẩu.
 - [ ] Kiểm thử và hoàn thiện toàn bộ hệ thống.
 
-## 9. Tác giả
+## 8. Tác giả
 
 **Zay (trvu)**
 
-Admin
+## 9 Tk
+**Admin**
 
-Tên đăng nhập: admin
+|Tên đăng nhập: admin|
 
-Mật khẩu: Admin@12345
+|Mật khẩu: Admin@12345|
 
 Lưu ý: Đây là tài khoản mẫu dùng để đăng nhập và kiểm tra chức năng quản trị viên. Mật khẩu trong cơ sở dữ liệu được mã hóa bằng password_hash().
 
-Sinh viên
+**Sinh viên**
 
 Sử dụng MSSV và mật khẩu đã được tạo trong cơ sở dữ liệu để đăng nhập có thể dùng tk admin để tạo tại tôi làm biến.
 
 Không thì sử dụng tk tôi đã tạo sẵn
 
-Tên đăng nhập: 001
+|Tên đăng nhập: 001|
 
-Mật khẩu: TranVu
+|Mật khẩu: TranVu|
