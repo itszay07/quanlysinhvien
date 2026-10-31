@@ -1,0 +1,14 @@
+
+<footer class="bg-gray-800 text-gray-300 mt-10">
+    <div class="max-w-7xl mx-auto px-6 py-6 text-center">
+
+        <p class="font-medium">
+            HỆ THỐNG QUẢN LÝ SINH VIÊN
+        </p>
+
+        <p class="text-sm text-gray-400 mt-2">
+            © 2026 - Bản quyền thuộc về hệ thống quản lý sinh viên.
+        </p>
+
+    </div>
+</footer>

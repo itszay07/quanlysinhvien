@@ -7,8 +7,8 @@ $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $username = trim($_POST["username"]);
-    $password = $_POST["password"];
+    $username = trim($_POST["username"] ?? "");
+    $password = $_POST["password"] ?? "";
 
     // Kiểm tra tài khoản Admin
     $sql = "SELECT * FROM quan_tri_vien WHERE username = ?";
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["user_id"] = $user["id"];
         $_SESSION["hoten"] = $user["hoten"];
 
-        header("Location: ../admin/index.php"); 
+        header("Location: ../admin/index.php");
         exit();
 
     } else {
@@ -60,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập hệ thống</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -70,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <!-- Tiêu đề -->
         <div class="text-center mb-8">
+
             <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                 DN
             </div>
@@ -81,13 +81,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p class="text-slate-500 mt-2">
                 Hệ thống quản lý sinh viên
             </p>
+
         </div>
 
         <!-- Thông báo lỗi -->
         <?php if ($error != "") { ?>
+
             <div class="bg-red-100 text-red-700 border border-red-200 rounded-lg p-3 mb-5 text-sm">
                 <?php echo htmlspecialchars($error); ?>
             </div>
+
         <?php } ?>
 
         <!-- Form đăng nhập -->
@@ -104,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     required
                     autocomplete="username"
                     placeholder="Nhập tên đăng nhập hoặc MSSV"
+                    value="<?php echo htmlspecialchars($_POST["username"] ?? ""); ?>"
                     class="w-full border border-slate-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
             </div>
@@ -121,12 +125,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     placeholder="Nhập mật khẩu"
                     class="w-full border border-slate-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
+
+                <!-- Quên mật khẩu -->
+                <div class="text-right mt-2">
+
+                    <a href="forgot_password.php"
+                       class="text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                        Quên mật khẩu?
+                    </a>
+
+                </div>
+
             </div>
 
             <button
                 type="submit"
-                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200"
-            >
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200">
                 Đăng nhập
             </button>
 

@@ -58,11 +58,6 @@ $danhSach = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 Thông tin cá nhân
             </a>
 
-            <a href="change_password.php"
-               class="text-blue-600 hover:text-blue-800 font-medium">
-                Đổi mật khẩu
-            </a>
-
             <a href="../auth/logout.php"
                class="text-red-600 hover:text-red-800 font-medium">
                 Đăng xuất
@@ -135,7 +130,7 @@ $danhSach = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </main>
 
     <footer class="text-center text-gray-500 py-6">
-        Hệ thống quản lý sinh viên
+        Create By Zay(Trvu)
     </footer>
 
 </body>

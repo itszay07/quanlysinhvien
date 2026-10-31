@@ -1,12 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-    
-</body>
-</html>
+
+<?php
+$tieuDeTrang = $tieuDeTrang ?? "Hệ thống quản lý sinh viên";
+$vaiTro = $_SESSION["role"] ?? "";
+$hoten = $_SESSION["hoten"] ?? "";
+?>
+
+<header class="bg-blue-700 text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-5">
+
+        <div class="flex flex-wrap justify-between items-center gap-4">
+
+            <div>
+                <h1 class="text-2xl font-bold">
+                    HỆ THỐNG QUẢN LÝ SINH VIÊN
+                </h1>
+
+                <p class="text-blue-100 text-sm mt-1">
+                    <?php echo htmlspecialchars($tieuDeTrang); ?>
+                </p>
+            </div>
+
+            <div class="text-sm">
+                Xin chào,
+                <span class="font-semibold">
+                    <?php echo htmlspecialchars($hoten); ?>
+                </span>
+            </div>
+
+        </div>
+
+        <!-- Thanh điều hướng -->
+        <nav class="flex flex-wrap gap-5 mt-5 border-t border-blue-500 pt-4">
+
+            <?php if ($vaiTro == "admin"): ?>
+
+                <a href="../admin/index.php"
+                   class="hover:text-blue-200">
+                    Trang chủ
+                </a>
+
+                <a href="../admin/student_list.php"
+                   class="hover:text-blue-200">
+                    Sinh viên
+                </a>
+
+                <a href="../admin/class_list.php"
+                   class="hover:text-blue-200">
+                    Lớp học
+                </a>
+
+                <a href="../admin/faculty_list.php"
+                   class="hover:text-blue-200">
+                    Khoa
+                </a>
+
+                <a href="../admin/notification.php"
+                   class="hover:text-blue-200">
+                    Thông báo
+                </a>
+
+            <?php elseif ($vaiTro == "sinhvien"): ?>
+
+                <a href="../sinhvien/index.php"
+                   class="hover:text-blue-200">
+                    Trang chủ
+                </a>
+
+                <a href="../sinhvien/profile.php"
+                   class="hover:text-blue-200">
+                    Thông tin cá nhân
+                </a>
+
+                <a href="../sinhvien/change_password.php"
+                   class="hover:text-blue-200">
+                    Đổi mật khẩu
+                </a>
+
+                <a href="../sinhvien/notifications.php"
+                   class="hover:text-blue-200">
+                    Thông báo
+                </a>
+
+            <?php endif; ?>
+
+            <a href="../auth/logout.php"
+               class="text-red-200 hover:text-white">
+                Đăng xuất
+            </a>
+
+        </nav>
+
+    </div>
+</header>

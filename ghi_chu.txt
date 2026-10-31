@@ -1,0 +1,110 @@
+code tao_admin.php sau khi tao xóa xóa file tao_admin.php để tránh người khác truy cập và chạy lại.
+
+<?php
+require_once "config/ketnoi.php";
+
+// Thông tin tài khoản Admin
+$username = "admin";
+$password = "Admin@12345";
+$hoten = "Quản trị viên";
+$email = "admin@gmail.com";
+
+// Kiểm tra tài khoản đã tồn tại chưa
+$sql = "SELECT id FROM quan_tri_vien WHERE username = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$username]);
+
+if ($stmt->fetch()) {
+    echo "Tài khoản Admin đã tồn tại!";
+} else {
+
+    // Mã hóa mật khẩu
+    $matKhauMaHoa = password_hash($password, PASSWORD_DEFAULT);
+
+    // Thêm tài khoản vào database
+    $sql = "INSERT INTO quan_tri_vien
+            (username, password, hoten, email)
+            VALUES (?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([
+        $username,
+        $matKhauMaHoa,
+        $hoten,
+        $email
+    ]);
+
+    echo "Tạo tài khoản Admin thành công!";
+}
+?>
+--------------------------------------------------
+GHI CHÚ DỰ ÁN QUẢN LÝ SINH VIÊN
+
+1. TÀI KHOẢN ADMIN MẪU
+
+- Username: admin
+- Password: Admin@12345
+
+2. LƯU Ý BẢO MẬT
+
+- Mật khẩu được mã hóa bằng password_hash() trước khi lưu vào database.
+- Sau khi tạo tài khoản Admin thành công, xóa file tao_admin.php.
+- Không lưu mật khẩu dạng văn bản thông thường trong database.
+
+3. CÁC HÀM PHP CẦN NHỚ
+
+- password_hash(): Mã hóa mật khẩu.
+- password_verify(): Kiểm tra mật khẩu.
+- prepare(): Chuẩn bị câu lệnh SQL.
+- execute(): Thực thi câu lệnh SQL.
+- fetch(): Lấy một dòng dữ liệu.
+
+4. TRẠNG THÁI DỰ ÁN
+
+- Đã tạo database quanlysinhvien.
+- Đã tạo 5 bảng theo ERD.
+- Đã kết nối PHP với MySQL thành công.
+- Đang xây dựng chức năng đăng nhập.
+------------------------------------------------------
+auth/login
+Code	                           Chức năng
+session_start()	Khởi tạo Session để lưu trạng thái đăng nhập
+$_SERVER["REQUEST_METHOD"]	Kiểm tra form được gửi bằng POST
+$_POST["username"]	Lấy tên đăng nhập hoặc MSSV
+trim()	Loại bỏ khoảng trắng thừa
+$conn->prepare()	Chuẩn bị câu lệnh SQL
+execute()	Thực thi truy vấn
+fetch()	Lấy thông tin tài khoản
+password_verify()	So sánh mật khẩu nhập vào với mật khẩu đã mã hóa
+$_SESSION	Lưu thông tin người dùng sau khi đăng nhập
+header("Location: ...")	Chuyển sang trang khác 
+exit()	Dừng chương trình sau khi chuyển trang
+-----------------------------------------------------------
+auth/logout.php
+
+<?php
+session_start();
+
+session_unset();
+session_destroy();
+
+header("Location: login.php");
+exit();
+?>
+
+session_start();	Khởi động hoặc tiếp tục Session hiện tại.
+session_unset();	Xóa các biến được lưu trong Session, ví dụ role, user_id, hoten.
+session_destroy();	Hủy Session hiện tại trên máy chủ.
+header("Location: login.php");	Chuyển người dùng về trang đăng nhập.
+exit();	Dừng chương trình, không chạy thêm code phía sau.
+----------------------------------------------------------------
+Trong admin/index.php và sinhvien/index.php
+
+<a href="../auth/logout.php">Đăng xuất</a>
+
+Thẻ <a> tạo liên kết để người dùng nhấn vào.
+auth/logout.php là đường dẫn đến file xử lý đăng xuất.
+--------------------------------------------------------------
+Session là gì?
+trl: Session là cơ chế lưu trữ thông tin của người dùng trên máy chủ trong quá trình sử dụng website. 
+Trong dự án này, Session dùng để ghi nhớ người đăng nhập là Admin hay Sinh viên, giúp kiểm tra quyền truy cập vào từng khu vực.
